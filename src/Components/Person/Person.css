@@ -8,3 +8,8 @@
   text-align: center;
   margin: 15px 15px;
 }
+
+.Person h3 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}

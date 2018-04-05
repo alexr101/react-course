@@ -10,11 +10,11 @@ const person = (props) => {
             <h3>Age: {props.age}</h3>
             <p>{props.children}</p>
             <div>
-              <label for="name">Name</label>
+              <label htmlFor="name">Name</label>
               <input id="name" onChange={(e) => props.onNameChangedHandler(e, props.id)} placeholder={props.name}/>
             </div>
             <div>
-              <label for="age">Age</label>
+              <label htmlFor="age">Age</label>
               <input id="age" onChange={(e) => props.onAgeChangedHandler(e, props.id)} placeholder={props.age}/>
             </div>
 

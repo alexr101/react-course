@@ -36,23 +36,18 @@ class App extends Component {
   onNameChangedHandler = (e, id) => {
     var editedPeople = this.state.updates.editedPeople.slice();
     var people = this.state.people.slice();
-
-    var unsavedPerson = Object.assign( {}, editedPeople[id] );
+    var unsavedPerson = {...editedPeople[id]};
     var updatedPerson;
     const unsavedPersonExists = Object.keys(unsavedPerson).length === 0 && unsavedPerson.constructor === Object
 
-
-    if(unsavedPersonExists){
-      updatedPerson = Object.assign( {}, people[id] );
-      console.log('person not saved');
-    } else 
-      updatedPerson = Object.assign( {}, unsavedPerson );
-
-    console.log(unsavedPerson)
+    if(unsavedPersonExists)
+      updatedPerson = {...people[id]};
+    else 
+      updatedPerson = {...unsavedPerson};
 
     updatedPerson.name = e.target.value;
     editedPeople[id] = updatedPerson;
-    console.log(editedPeople)
+
     this.setState({
       updates: {
         editedPeople: editedPeople
@@ -63,15 +58,15 @@ class App extends Component {
   onAgeChangedHandler = (e, id) => {
     var editedPeople = this.state.updates.editedPeople.slice();
     var people = this.state.people.slice();
-
-    var unsavedPerson = Object.assign( {}, editedPeople[id] );
+    var unsavedPerson = {...editedPeople[id] };
+    // var unsavedPerson = Object.assign( {}, editedPeople[id] );
     var updatedPerson;
     const unsavedPersonExists = Object.keys(unsavedPerson).length === 0 && unsavedPerson.constructor === Object
 
     if(unsavedPersonExists)  {
-      updatedPerson = Object.assign( {}, people[id] );
+      updatedPerson = {...people[id]};
     } else 
-      updatedPerson = Object.assign( {}, unsavedPerson );
+      updatedPerson = {...unsavedPerson};
 
     updatedPerson.age = e.target.value;
     editedPeople[id] = updatedPerson;
