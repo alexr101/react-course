@@ -2,7 +2,8 @@ import React from 'react';
 
 const person = (props) => {
   return  <div>
-            <h1>Person = {props.name} Age: {props.age}</h1>
+            <h3>Person = {props.name} Age: {props.age}</h3>
+            <p>{props.children}</p>
           </div>
 };
 
