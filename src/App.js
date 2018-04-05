@@ -18,7 +18,7 @@ class App extends Component {
 
   switchNameHandler = () => {
     var people = this.state.people;
-    this.state.edits.editedPeople.map((updatedPerson, i) => {
+    this.state.updates.editedPeople.map((updatedPerson, i) => {
       people[i] = updatedPerson;
     })
 
@@ -31,13 +31,47 @@ class App extends Component {
     var editedPeople = this.state.updates.editedPeople.slice();
     var people = this.state.people.slice();
 
-    var updatedPerson = Object.assign( {}, people[id] );
-    
+    var unsavedPerson = Object.assign( {}, editedPeople[id] );
+    var updatedPerson;
+    const unsavedPersonExists = Object.keys(unsavedPerson).length === 0 && unsavedPerson.constructor === Object
+
+
+    if(unsavedPersonExists){
+      updatedPerson = Object.assign( {}, people[id] );
+      console.log('person not saved');
+    } else 
+      updatedPerson = Object.assign( {}, unsavedPerson );
+
+    console.log(unsavedPerson)
+
     updatedPerson.name = e.target.value;
+    editedPeople[id] = updatedPerson;
+    console.log(editedPeople)
+    this.setState({
+      updates: {
+        editedPeople: editedPeople
+      } 
+    })
+  }
+
+  onAgeChangedHandler = (e, id) => {
+    var editedPeople = this.state.updates.editedPeople.slice();
+    var people = this.state.people.slice();
+
+    var unsavedPerson = Object.assign( {}, editedPeople[id] );
+    var updatedPerson;
+    const unsavedPersonExists = Object.keys(unsavedPerson).length === 0 && unsavedPerson.constructor === Object
+
+    if(unsavedPersonExists)  {
+      updatedPerson = Object.assign( {}, people[id] );
+    } else 
+      updatedPerson = Object.assign( {}, unsavedPerson );
+
+    updatedPerson.age = e.target.value;
     editedPeople[id] = updatedPerson;
 
     this.setState({
-      edits: {
+      updates: {
         editedPeople: editedPeople
       } 
     })
@@ -53,6 +87,7 @@ class App extends Component {
             name={person.name} 
             age={person.age}
             onNameChangedHandler = {this.onNameChangedHandler}
+            onAgeChangedHandler = {this.onAgeChangedHandler}
             ></Person>
           <button onClick={this.switchNameHandler}>Switch Name</button>
         </div>
