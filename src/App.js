@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Components/Person/Person';
+import Button from './Components/Button/Button';
 
 class App extends Component {
   state = {
@@ -10,13 +11,18 @@ class App extends Component {
       {name: "Alex2", age: '127'},
       {name: "Alex3", age: '137'},
       {name: "Alex5", age: '147'},
+      {name: "Alex", age: '17'},
+      {name: "Alex2", age: '127'},
+      {name: "Alex3", age: '137'},
+      {name: "Alex5", age: '147'},
     ],
     updates: {
       editedPeople: []
-    }
+    },
+    showPeople: false
   }
 
-  switchNameHandler = () => {
+  updatePersonHandler = () => {
     var people = this.state.people;
     this.state.updates.editedPeople.map((updatedPerson, i) => {
       people[i] = updatedPerson;
@@ -77,41 +83,34 @@ class App extends Component {
     })
   }
 
-  render() {
+  togglePeopleList = () => {
+    var showPeople = this.state.showPeople;
+    this.setState({ showPeople: !showPeople });
+  }
 
-    const peopleList = this.state.people.map((person, i) => {
-      return (
-        <div key={i}>
-          <Person 
+  render() {
+    var peopleList;
+
+    if(this.state.showPeople) {
+      peopleList = this.state.people.map((person, i) => {
+        return (
+          <Person key={i} 
             id = {i}
             name={person.name} 
             age={person.age}
             onNameChangedHandler = {this.onNameChangedHandler}
             onAgeChangedHandler = {this.onAgeChangedHandler}
-            ></Person>
-          <button onClick={this.switchNameHandler}>Switch Name</button>
-        </div>
-        
-      );
-    })
+            updatePersonHandler = {this.updatePersonHandler}
+            ></Person>   
+        );
+      })
+    }
+
     return (
       <div className="App">
-        <h1>Howdy</h1>
-        <h4>List through var</h4>
+        <h1>All the People</h1>
+        <Button click={this.togglePeopleList}>Show People</Button>
         {peopleList}
-        <h4>List by direct rendering in return</h4>
-        {this.state.people.map((person, i) => {
-          return (
-            <div key={i}>
-              <Person 
-                id={i}
-                name={person.name} 
-                age={person.age}
-                onNameChangedHandler = {this.onNameChangedHandler}></Person>              
-              <button onClick={this.switchNameHandler}>switch Name</button>
-            </div>            
-          );
-        })}
       </div>
     );
   }
