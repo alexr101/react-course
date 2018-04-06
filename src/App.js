@@ -7,14 +7,14 @@ import Button from './Components/Button/Button';
 class App extends Component {
   state = {
     people: [
-      {name: "Alex", age: '17'},
-      {name: "Alex2", age: '127'},
-      {name: "Alex3", age: '137'},
-      {name: "Alex5", age: '147'},
-      {name: "Alex", age: '17'},
-      {name: "Alex2", age: '127'},
-      {name: "Alex3", age: '137'},
-      {name: "Alex5", age: '147'},
+      {id: 1, name: "Alex", age: '17'},
+      {id: 2, name: "Alex2", age: '127'},
+      {id: 3, name: "Alex3", age: '137'},
+      {id: 4, name: "Alex5", age: '147'},
+      {id: 5, name: "Alex7", age: '187'},
+      {id: 6, name: "Alex2", age: '1827'},
+      {id: 7, name: "Alex3", age: '13867'},
+      {id: 8, name: "Alex5", age: '1647'},
     ],
     updates: {
       editedPeople: []
@@ -23,8 +23,12 @@ class App extends Component {
   }
 
   updatePersonHandler = () => {
-    var people = this.state.people;
+    var people = this.state.people.slice();
+    people.map(person => {
+      
+    })
     this.state.updates.editedPeople.map((updatedPerson, i) => {
+      
       people[i] = updatedPerson;
     })
 
@@ -37,16 +41,14 @@ class App extends Component {
     var editedPeople = this.state.updates.editedPeople.slice();
     var people = this.state.people.slice();
     var unsavedPerson = {...editedPeople[id]};
-    var updatedPerson;
-    const unsavedPersonExists = Object.keys(unsavedPerson).length === 0 && unsavedPerson.constructor === Object
+    const previousEditsExist = Object.keys(unsavedPerson).length !== 0 && unsavedPerson.constructor === Object
 
-    if(unsavedPersonExists)
-      updatedPerson = {...people[id]};
-    else 
-      updatedPerson = {...unsavedPerson};
-
-    updatedPerson.name = e.target.value;
-    editedPeople[id] = updatedPerson;
+    if(previousEditsExist) {
+      unsavedPerson  = {...people.find( person => person.id === id)}
+    }
+    unsavedPerson.name = e.target.value;
+    editedPeople[id] = unsavedPerson;
+    // editedPeople[id] = unsavedPerson;
 
     this.setState({
       updates: {
@@ -58,19 +60,17 @@ class App extends Component {
   onAgeChangedHandler = (e, id) => {
     var editedPeople = this.state.updates.editedPeople.slice();
     var people = this.state.people.slice();
-    var unsavedPerson = {...editedPeople[id] };
-    // var unsavedPerson = Object.assign( {}, editedPeople[id] );
-    var updatedPerson;
-    const unsavedPersonExists = Object.keys(unsavedPerson).length === 0 && unsavedPerson.constructor === Object
+    var unsavedPerson = {...editedPeople[id]};
 
-    if(unsavedPersonExists)  {
-      updatedPerson = {...people[id]};
-    } else 
-      updatedPerson = {...unsavedPerson};
+    const previousEditsExist = Object.keys(unsavedPerson).length !== 0 && unsavedPerson.constructor === Object
+    if(previousEditsExist)  {
+      unsavedPerson = {...people.find( person => person.id === id)};
+    }
 
-    updatedPerson.age = e.target.value;
-    editedPeople[id] = updatedPerson;
-
+    unsavedPerson.age = e.target.value;
+    editedPeople[id] = unsavedPerson;
+    console.log(editedPeople);
+    console.log(unsavedPerson)
     this.setState({
       updates: {
         editedPeople: editedPeople
@@ -83,6 +83,13 @@ class App extends Component {
     this.setState({ showPeople: !showPeople });
   }
 
+  removePerson = (id) => {
+    var people = this.state.people.slice();
+    var updatedPeople = this.state.updates.editedPeople
+    people.splice(id, 1);
+    this.setState({ people: people });
+  }
+
   render() {
     var peopleList;
 
@@ -90,12 +97,13 @@ class App extends Component {
       peopleList = this.state.people.map((person, i) => {
         return (
           <Person key={i} 
-            id = {i}
+            id = {person.id}
             name={person.name} 
             age={person.age}
             onNameChangedHandler = {this.onNameChangedHandler}
             onAgeChangedHandler = {this.onAgeChangedHandler}
             updatePersonHandler = {this.updatePersonHandler}
+            removePerson = {this.removePerson}
             ></Person>   
         );
       })

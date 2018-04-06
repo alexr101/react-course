@@ -1,5 +1,4 @@
 .btn-1 {
-
   display: block;
   padding: 15px 25px;
   font-size: 1em;
@@ -7,6 +6,12 @@
   border: 1px solid #f8f8f8;
   margin: auto;
   box-shadow: 1px 1px 1px #ccc;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 15px 15px;
+
+}
+
+.red-btn {
+  background-color: #f45042;
+  border: 1px solid #d04538;
+  color: #fff;
 }

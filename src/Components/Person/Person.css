@@ -9,7 +9,26 @@
   margin: 15px 15px;
 }
 
+.Person .form-inputs {
+  margin-bottom: 15px;
+}
+
+.Person label {
+  display: inline-block;
+  width: 20%;
+  max-width: 45px;
+  text-align: left;
+}
+
+.Person input {
+  padding: 8px 5px;
+}
+
 .Person h3 {
   margin-top: 0px;
   margin-bottom: 5px;
+}
+
+.Person button {
+  display: inline-block;
 }
