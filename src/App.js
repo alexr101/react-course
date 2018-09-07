@@ -23,10 +23,7 @@ class App extends Component {
   }
 
   updatePersonHandler = () => {
-    var people = this.state.people.slice();
-    people.map(person => {
-      
-    })
+    var people = this.state.people.slice();;
     this.state.updates.editedPeople.map((updatedPerson, i) => {
       
       people[i] = updatedPerson;
@@ -37,18 +34,26 @@ class App extends Component {
     });
   }
 
-  onNameChangedHandler = (e, id) => {
+  // The person could be in the editedPeople list if it hasn't been saved and we're still changing other
+  // or people. This matters because we want to make sure we pick the copy with the other property updates if necessary
+  getPersonToEdit = (id) => {
     var editedPeople = this.state.updates.editedPeople.slice();
     var people = this.state.people.slice();
-    var unsavedPerson = {...editedPeople[id]};
-    const previousEditsExist = Object.keys(unsavedPerson).length !== 0 && unsavedPerson.constructor === Object
 
-    if(previousEditsExist) {
-      unsavedPerson  = {...people.find( person => person.id === id)}
-    }
-    unsavedPerson.name = e.target.value;
-    editedPeople[id] = unsavedPerson;
-    // editedPeople[id] = unsavedPerson;
+    var person = { ...editedPeople[id]};
+    const personNotInEditMode = Object.keys(person).length === 0 && person.constructor === Object
+    if(personNotInEditMode) 
+      person = {...people[id]};
+    
+    return person;
+  }
+
+  onNameChangedHandler = (e, id) => {
+    var person = this.getPersonToEdit(id);
+
+    person.name = e.target.value;
+    var editedPeople = this.state.updates.editedPeople.slice();;
+    editedPeople[id] = person;
 
     this.setState({
       updates: {
@@ -57,20 +62,15 @@ class App extends Component {
     })
   }
 
+  // In short update the person in "updatePeople" array
   onAgeChangedHandler = (e, id) => {
-    var editedPeople = this.state.updates.editedPeople.slice();
-    var people = this.state.people.slice();
-    var unsavedPerson = {...editedPeople[id]};
-
-    const previousEditsExist = Object.keys(unsavedPerson).length !== 0 && unsavedPerson.constructor === Object
-    if(previousEditsExist)  {
-      unsavedPerson = {...people.find( person => person.id === id)};
-    }
-
-    unsavedPerson.age = e.target.value;
-    editedPeople[id] = unsavedPerson;
-    console.log(editedPeople);
-    console.log(unsavedPerson)
+    var person = this.getPersonToEdit(id);
+    console.log(person);
+    
+    person.age = e.target.value;
+    var editedPeople = this.state.updates.editedPeople.slice();;
+    editedPeople[id] = person;
+    
     this.setState({
       updates: {
         editedPeople: editedPeople
@@ -97,7 +97,7 @@ class App extends Component {
       peopleList = this.state.people.map((person, i) => {
         return (
           <Person key={i} 
-            id = {person.id}
+            id = {i}
             name={person.name} 
             age={person.age}
             onNameChangedHandler = {this.onNameChangedHandler}
