@@ -105,11 +105,18 @@ class App extends Component {
             ></Person>   
         );
       })
+
+      var headerStyle = {
+        fontWeight: 'bold',
+        color: 'red'
+      };
     }
+
+
 
     return (
       <div className="App">
-        <h1>All the People</h1>
+        <h1 style={headerStyle}>All the People</h1>
         <Button click={this.togglePeopleList}>Show People</Button>
         {peopleList}
       </div>
