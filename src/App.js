@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Radium from 'radium';
 import Person from './Components/Person/Person';
 import Button from './Components/Button/Button';
 
@@ -108,7 +109,10 @@ class App extends Component {
 
       var headerStyle = {
         fontWeight: 'bold',
-        color: 'red'
+        color: 'red',
+        ':hover': {
+          color: 'black'
+        }
       };
     }
 
@@ -124,4 +128,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);

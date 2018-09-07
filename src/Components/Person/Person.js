@@ -1,10 +1,17 @@
 import React from 'react';
 import Button from './../Button/Button';
+import Radium from 'radium';
 import './Person.css'
 
 
 const person = (props) => {
-  return  <div className="Person" onClick={props.click}>
+  var cardStyles = {
+    ':hover': {
+      backgroundColor: '#fbfbfb'
+    }
+  }
+
+  return  <div style={cardStyles} className="Person" onClick={props.click}>
             <h2>Profile Card</h2>
             <h3>Name: {props.name}</h3>
             <h3>Age: {props.age}</h3>
@@ -24,4 +31,4 @@ const person = (props) => {
           </div>
 };
 
-export default person;
+export default Radium(person);
