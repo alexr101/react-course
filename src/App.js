@@ -23,10 +23,9 @@ class App extends Component {
   }
 
   updatePersonHandler = () => {
-    var people = this.state.people.slice();;
+    var people = [...this.state.people];
     this.state.updates.editedPeople.map((updatedPerson, i) => {
-      
-      people[i] = updatedPerson;
+      return people[i] = updatedPerson;
     })
 
     this.setState({
@@ -37,8 +36,8 @@ class App extends Component {
   // The person could be in the editedPeople list if it hasn't been saved and we're still changing other
   // or people. This matters because we want to make sure we pick the copy with the other property updates if necessary
   getPersonToEdit = (id) => {
-    var editedPeople = this.state.updates.editedPeople.slice();
-    var people = this.state.people.slice();
+    var editedPeople = [...this.state.updates.editedPeople];
+    var people = [...this.state.people];
 
     var person = { ...editedPeople[id]};
     const personNotInEditMode = Object.keys(person).length === 0 && person.constructor === Object
@@ -52,7 +51,7 @@ class App extends Component {
     var person = this.getPersonToEdit(id);
 
     person.name = e.target.value;
-    var editedPeople = this.state.updates.editedPeople.slice();;
+    var editedPeople = [...this.state.updates.editedPeople];
     editedPeople[id] = person;
 
     this.setState({
@@ -68,7 +67,7 @@ class App extends Component {
     console.log(person);
     
     person.age = e.target.value;
-    var editedPeople = this.state.updates.editedPeople.slice();;
+    var editedPeople = [...this.state.updates.editedPeople];
     editedPeople[id] = person;
     
     this.setState({
@@ -85,7 +84,6 @@ class App extends Component {
 
   removePerson = (id) => {
     var people = this.state.people.slice();
-    var updatedPeople = this.state.updates.editedPeople
     people.splice(id, 1);
     this.setState({ people: people });
   }
