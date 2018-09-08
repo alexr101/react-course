@@ -83,6 +83,22 @@ class App extends Component {
     this.setState({ showPeople: !showPeople });
   }
 
+  getPeople = () => {
+    return this.state.people.map((person, i) => {
+      return (
+        <Person key={i} 
+          id = {i}
+          name={person.name} 
+          age={person.age}
+          onNameChangedHandler = {this.onNameChangedHandler}
+          onAgeChangedHandler = {this.onAgeChangedHandler}
+          updatePersonHandler = {this.updatePersonHandler}
+          removePerson = {this.removePerson}
+          ></Person>   
+      );
+    })
+  }
+
   removePerson = (id) => {
     var people = this.state.people.slice();
     people.splice(id, 1);
@@ -93,30 +109,16 @@ class App extends Component {
     var peopleList;
 
     if(this.state.showPeople) {
-      peopleList = this.state.people.map((person, i) => {
-        return (
-          <Person key={i} 
-            id = {i}
-            name={person.name} 
-            age={person.age}
-            onNameChangedHandler = {this.onNameChangedHandler}
-            onAgeChangedHandler = {this.onAgeChangedHandler}
-            updatePersonHandler = {this.updatePersonHandler}
-            removePerson = {this.removePerson}
-            ></Person>   
-        );
-      })
+      peopleList = this.getPeople();
 
       var headerStyle = {
         fontWeight: 'bold',
         color: 'red',
         ':hover': {
           color: 'black'
-        }
+        },
       };
     }
-
-
 
     return (
       <div className="App">

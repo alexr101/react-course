@@ -8,6 +8,9 @@ const person = (props) => {
   var cardStyles = {
     ':hover': {
       backgroundColor: '#fbfbfb'
+    },
+    '@media (min-width:768px)': {
+      maxWidth: '300px',
     }
   }
 
@@ -24,10 +27,8 @@ const person = (props) => {
               <label htmlFor="age">Age</label>
               <input id="age" onChange={(e) => props.onAgeChangedHandler(e, props.id)} placeholder={props.age}/>
             </div>
-
             <Button click={props.updatePersonHandler}>Update</Button>
             <Button click={() => props.removePerson(props.id)} classes="red-btn">Remove</Button>
-
           </div>
 };
 
