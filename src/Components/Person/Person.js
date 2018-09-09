@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from './../Button/Button';
-import Radium from 'radium';
 import './Person.css'
 
 
@@ -8,9 +7,6 @@ const person = (props) => {
   var cardStyles = {
     ':hover': {
       backgroundColor: '#fbfbfb'
-    },
-    '@media (min-width:768px)': {
-      maxWidth: '300px',
     }
   }
 
@@ -32,4 +28,4 @@ const person = (props) => {
           </div>
 };
 
-export default Radium(person);
+export default person;

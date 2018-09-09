@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Radium from 'radium';
 import Person from './Components/Person/Person';
 import Button from './Components/Button/Button';
 
@@ -107,22 +106,25 @@ class App extends Component {
 
   render() {
     var peopleList;
+    var headerStyle = {
+      fontWeight: 'bold',
+    };
+    var logoStyle = {
+      width: '150px',
+      display: 'inline-block',
+      marginBottom: '-10px'
+    }
 
     if(this.state.showPeople) {
       peopleList = this.getPeople();
-
-      var headerStyle = {
-        fontWeight: 'bold',
-        color: 'red',
-        ':hover': {
-          color: 'black'
-        },
-      };
+      headerStyle.color = 'red'
     }
+
 
     return (
       <div className="App">
-        <h1 style={headerStyle}>All the People</h1>
+        <img style={logoStyle} src={logo}></img>
+        <h1 style={headerStyle}>ALL THE PEOPLE ARE HERE</h1>
         <Button click={this.togglePeopleList}>Show People</Button>
         {peopleList}
       </div>
@@ -130,4 +132,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
