@@ -1,4 +1,4 @@
-.btn-1 {
+.btn {
   display: block;
   padding: 15px 25px;
   font-size: 1em;
@@ -10,7 +10,7 @@
 
 }
 
-.red-btn {
+.redBtn {
   background-color: #f45042;
   border: 1px solid #d04538;
   color: #fff;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.css';
 import Person from './Components/Person/Person';
 import Button from './Components/Button/Button';
 
@@ -109,11 +109,6 @@ class App extends Component {
     var headerStyle = {
       fontWeight: 'bold',
     };
-    var logoStyle = {
-      width: '150px',
-      display: 'inline-block',
-      marginBottom: '-10px'
-    }
 
     if(this.state.showPeople) {
       peopleList = this.getPeople();
@@ -122,8 +117,8 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-        <img style={logoStyle} src={logo}></img>
+      <div className={classes.App}>
+        <img className={classes.logo} src={logo}></img>
         <h1 style={headerStyle}>ALL THE PEOPLE ARE HERE</h1>
         <Button click={this.togglePeopleList}>Show People</Button>
         {peopleList}

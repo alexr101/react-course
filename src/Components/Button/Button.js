@@ -1,9 +1,21 @@
 import React from 'react';
-import './Button.css';
+import classes from './Button.css';
+
+const getBtnClass = (btnType) => {
+  var btnClass = classes.btn;
+
+  if(btnType == 'red') btnClass += ' ' + classes.redBtn;
+  
+  return btnClass;
+}
 
 const Button = (props) => {
+  console.log(classes);
+  
+  var btnClass = getBtnClass(props.buttonType);
+
   return (
-    <button className={"btn-1 " + props.classes} onClick={props.click}>{props.children}</button>
+    <button className={btnClass} onClick={props.click}>{props.children}</button>
   )
 }
 
