@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from '../Assets/logo.svg';
 import classes from './App.css';
-import Button from '../Components/Button/Button';
+import Cockpit from '../Components/Cockpit/Cockpit';
 import PersonCollection from '../Components/PersonCollection/PersonCollection';
 
 class App extends Component {
@@ -111,10 +110,10 @@ class App extends Component {
 
 
     return (
-      <div className={classes.App}>
-        <img className={classes.logo} src={logo}></img>
-        <h1 style={headerStyle}>ALL THE PEOPLE ARE HERE</h1>
-        <Button click={this.togglePeopleList}>Show People</Button>
+      <div>
+        <Cockpit
+          headerStyle = {headerStyle}
+          togglePeopleList = {this.togglePeopleList}></Cockpit>
         {peopleCollection}
       </div>
     );

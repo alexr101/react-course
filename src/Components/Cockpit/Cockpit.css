@@ -1,0 +1,17 @@
+.red {
+    background-color: #f45042!important;
+}
+.Cockpit {
+    text-align: center;
+}
+   
+.Cockpit > button {
+    margin: auto;
+}
+
+.logo {
+    width: 150px;
+    display: inline-block;
+    margin-bottom: -10px;
+}
+  
