@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../Assets/logo.svg';
 import classes from './App.css';
-import Person from '../Components/Person/Person';
 import Button from '../Components/Button/Button';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import PersonCollection from '../Components/PersonCollection/PersonCollection';
 
 class App extends Component {
   state = {
@@ -26,7 +25,8 @@ class App extends Component {
   updatePersonHandler = () => {
     var people = [...this.state.people];
     this.state.updates.editedPeople.map((updatedPerson, i) => {
-      return people[i] = updatedPerson;
+      if(updatedPerson)
+        people[i] = updatedPerson;
     })
 
     this.setState({
@@ -49,6 +49,8 @@ class App extends Component {
   }
 
   onNameChangedHandler = (e, id) => {
+    console.log(this.state);
+
     var person = this.getPersonToEdit(id);
 
     person.name = e.target.value;
@@ -60,6 +62,7 @@ class App extends Component {
         editedPeople: editedPeople
       } 
     })
+    console.log(this.state);
   }
 
   // In short update the person in "updatePeople" array
@@ -79,30 +82,8 @@ class App extends Component {
   }
 
   togglePeopleList = () => {
-    var showPeople = this.state.showPeople;
+    const showPeople = this.state.showPeople;
     this.setState({ showPeople: !showPeople });
-  }
-
-  getPeople = () => {
-    const rnd = Math.random();
-    if(rnd > .7) {
-      throw new Error('something went wrong');
-    }
-    return this.state.people.map((person, i) => {
-      return (
-        <ErrorBoundary key={i}>
-          <Person  
-            id = {i}
-            name={person.name} 
-            age={person.age}
-            onNameChangedHandler = {this.onNameChangedHandler}
-            onAgeChangedHandler = {this.onAgeChangedHandler}
-            updatePersonHandler = {this.updatePersonHandler}
-            removePerson = {this.removePerson}
-            ></Person>
-          </ErrorBoundary>   
-      );
-    })
   }
 
   removePerson = (id) => {
@@ -112,13 +93,19 @@ class App extends Component {
   }
 
   render() {
-    var peopleList;
+    var peopleCollection;
     var headerStyle = {
       fontWeight: 'bold',
     };
 
     if(this.state.showPeople) {
-      peopleList = this.getPeople();
+      peopleCollection = <PersonCollection 
+        people={this.state.people}
+        onNameChangedHandler = {this.onNameChangedHandler}
+        onAgeChangedHandler = {this.onAgeChangedHandler}
+        updatePersonHandler = {this.updatePersonHandler}
+        removePerson = {this.removePerson}
+        />
       headerStyle.color = 'red'
     }
 
@@ -128,7 +115,7 @@ class App extends Component {
         <img className={classes.logo} src={logo}></img>
         <h1 style={headerStyle}>ALL THE PEOPLE ARE HERE</h1>
         <Button click={this.togglePeopleList}>Show People</Button>
-        {peopleList}
+        {peopleCollection}
       </div>
     );
   }

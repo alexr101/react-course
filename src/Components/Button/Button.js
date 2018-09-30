@@ -10,7 +10,6 @@ const getBtnClass = (btnType) => {
 }
 
 const Button = (props) => {
-  console.log(classes);
   
   var btnClass = getBtnClass(props.buttonType);
 
