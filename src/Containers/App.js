@@ -112,6 +112,7 @@ class App extends Component {
     return (
       <div>
         <Cockpit
+          appTitle = {this.props.appTitle}
           headerStyle = {headerStyle}
           togglePeopleList = {this.togglePeopleList}></Cockpit>
         {peopleCollection}

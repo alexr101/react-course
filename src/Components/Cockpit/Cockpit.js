@@ -8,7 +8,7 @@ import classes from './Cockpit.css'
 const Cockpit = (props) => {
     return  <div className={classes.Cockpit}>
                 <img className={classes.logo} src={logo}></img>
-                <h1 style={props.headerStyle}>ALL THE PEOPLE ARE HERE</h1>
+                <h1 style={props.headerStyle}>{props.appTitle}</h1>
                 <Button click={props.togglePeopleList}>Show People</Button>
             </div>
 }
