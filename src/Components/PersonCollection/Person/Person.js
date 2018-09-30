@@ -3,7 +3,21 @@ import Button from '../../Button/Button';
 import classes from './Person.css'
 
 class Person extends Component {
+  constructor(props) {
+      super(props)
+      console.log('[Person.js] inside contructor', props );
+  }
+
+  componentWillMount() {
+      console.log('[Person.js] inside componentWillMount');
+  }
+
+  componentDidMount() {
+      console.log('[Person.js] inside componentDidMount');
+  }
   render() {
+    console.log('[Person.js] inside render');
+
     return  <div className={classes.Person} onClick={this.props.click}>
               <h2>Profile Card</h2>
               <h3>Name: {this.props.name}</h3>

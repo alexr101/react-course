@@ -4,21 +4,34 @@ import Cockpit from '../Components/Cockpit/Cockpit';
 import PersonCollection from '../Components/PersonCollection/PersonCollection';
 
 class App extends Component {
-  state = {
-    people: [
-      {id: 1, name: "Alex", age: '17'},
-      {id: 2, name: "Alex2", age: '127'},
-      {id: 3, name: "Alex3", age: '137'},
-      {id: 4, name: "Alex5", age: '147'},
-      {id: 5, name: "Alex7", age: '187'},
-      {id: 6, name: "Alex2", age: '1827'},
-      {id: 7, name: "Alex3", age: '13867'},
-      {id: 8, name: "Alex5", age: '1647'},
-    ],
-    updates: {
-      editedPeople: []
-    },
-    showPeople: false
+
+  constructor(props) {
+    super(props)
+    console.log('[App.js] inside contructor', props );
+    this.state = {
+      people: [
+        {id: 1, name: "Alex", age: '17'},
+        {id: 2, name: "Alex2", age: '127'},
+        {id: 3, name: "Alex3", age: '137'},
+        {id: 4, name: "Alex5", age: '147'},
+        {id: 5, name: "Alex7", age: '187'},
+        {id: 6, name: "Alex2", age: '1827'},
+        {id: 7, name: "Alex3", age: '13867'},
+        {id: 8, name: "Alex5", age: '1647'},
+      ],
+      updates: {
+        editedPeople: []
+      },
+      showPeople: false
+    }
+  }
+  
+  componentWillMount() {
+    console.log('[App.js] inside componentWillMount');
+  }
+  
+  componentDidMount() {
+    console.log('[App.js] inside componentDidMount');
   }
 
   updatePersonHandler = () => {
@@ -92,6 +105,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] inside render()');
     var peopleCollection;
     var headerStyle = {
       fontWeight: 'bold',
