@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../Assets/logo.svg';
 import classes from './App.css';
-import Person from './Components/Person/Person';
-import Button from './Components/Button/Button';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Person from '../Components/Person/Person';
+import Button from '../Components/Button/Button';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
