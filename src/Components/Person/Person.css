@@ -9,6 +9,10 @@
   margin: 15px 15px;
 }
 
+.Person:hover {
+  background-color: #fbfbfb;
+}
+
 .Person .formInputs {
   margin-bottom: 15px;
 }

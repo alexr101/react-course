@@ -4,13 +4,8 @@ import classes from './Person.css'
 
 
 const person = (props) => {
-  var cardStyles = {
-    ':hover': {
-      backgroundColor: '#fbfbfb'
-    }
-  }
 
-  return  <div style={cardStyles} className={classes.Person} onClick={props.click}>
+  return  <div className={classes.Person} onClick={props.click}>
             <h2>Profile Card</h2>
             <h3>Name: {props.name}</h3>
             <h3>Age: {props.age}</h3>
