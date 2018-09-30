@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import classes from './App.css';
 import Person from './Components/Person/Person';
 import Button from './Components/Button/Button';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -83,17 +84,23 @@ class App extends Component {
   }
 
   getPeople = () => {
+    const rnd = Math.random();
+    if(rnd > .7) {
+      throw new Error('something went wrong');
+    }
     return this.state.people.map((person, i) => {
       return (
-        <Person key={i} 
-          id = {i}
-          name={person.name} 
-          age={person.age}
-          onNameChangedHandler = {this.onNameChangedHandler}
-          onAgeChangedHandler = {this.onAgeChangedHandler}
-          updatePersonHandler = {this.updatePersonHandler}
-          removePerson = {this.removePerson}
-          ></Person>   
+        <ErrorBoundary key={i}>
+          <Person  
+            id = {i}
+            name={person.name} 
+            age={person.age}
+            onNameChangedHandler = {this.onNameChangedHandler}
+            onAgeChangedHandler = {this.onAgeChangedHandler}
+            updatePersonHandler = {this.updatePersonHandler}
+            removePerson = {this.removePerson}
+            ></Person>
+          </ErrorBoundary>   
       );
     })
   }
