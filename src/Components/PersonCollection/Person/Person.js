@@ -13,9 +13,11 @@ class Person extends Component {
   //     console.log('[Person.js] inside componentWillMount');
   // }
 
-  // componentDidMount() {
-  //     console.log('[Person.js] inside componentDidMount');
-  // }
+  componentDidMount() {
+      console.log('[Person.js] inside componentDidMount');
+      if(this.props.position === 0) 
+        this.inputElement.focus();
+  }
   render() {
     console.log('[Person.js] inside render');
 
@@ -26,7 +28,11 @@ class Person extends Component {
               <p>{this.props.children}</p>
               <div className={classes.formInputs}>
                 <label htmlFor="name">Name</label>
-                <input id="name" onChange={(e) => this.props.onNameChangedHandler(e, this.props.id)} placeholder={this.props.name}/>
+                <input 
+                  ref = {(input) => { this.inputElement = input } } // this references Person class
+                  id="name" 
+                  onChange={(e) => this.props.onNameChangedHandler(e, this.props.id)} 
+                  placeholder={this.props.name}/>
               </div>
               <div className={classes.formInputs}>
                 <label htmlFor="age">Age</label>

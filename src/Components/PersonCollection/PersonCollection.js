@@ -47,6 +47,7 @@ class PersonCollection extends Component {
                   id = {i}
                   name={person.name} 
                   age={person.age}
+                  position = {i}
                   onNameChangedHandler = {this.props.onNameChangedHandler}
                   onAgeChangedHandler = {this.props.onAgeChangedHandler}
                   updatePersonHandler = {this.props.updatePersonHandler}
