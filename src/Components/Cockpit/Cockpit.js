@@ -12,6 +12,7 @@ const Cockpit = (props) => {
                 <img className={classes.logo} src={logo} alt=""></img>
                 <h1 style={props.headerStyle}>{props.appTitle}</h1>
                 <Button click={props.togglePeopleList}>Show People</Button>
+                <p>Toggle Clicked: {props.toggleClicked}</p>
             </Aux>
 }
 

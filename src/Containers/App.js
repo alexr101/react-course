@@ -23,7 +23,8 @@ class App extends PureComponent {
       updates: {
         editedPeople: []
       },
-      showPeople: false
+      showPeople: false,
+      toggleClicked: 0
     }
   }
   
@@ -110,7 +111,12 @@ class App extends PureComponent {
 
   togglePeopleList = () => {
     const showPeople = this.state.showPeople;
-    this.setState({ showPeople: !showPeople });
+    this.setState((prevState, props)=> {
+      return { 
+        showPeople: !showPeople,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    });
   }
 
   removePerson = (id) => {
@@ -143,6 +149,7 @@ class App extends PureComponent {
         <Cockpit
           appTitle = {this.props.appTitle}
           headerStyle = {headerStyle}
+          toggleClicked = {this.state.toggleClicked}
           togglePeopleList = {this.togglePeopleList}></Cockpit>
         {peopleCollection}
       </Aux>
