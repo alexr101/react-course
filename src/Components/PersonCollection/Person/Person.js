@@ -4,10 +4,11 @@ import classes from './Person.css';
 import PropTypes from 'prop-types';
 
 class Person extends Component {
-  // constructor(props) {
-  //     super(props)
-  //     // console.log('[Person.js] inside contructor', props );
-  // }
+  constructor(props) {
+      super(props)
+      // console.log('[Person.js] inside contructor', props );
+      this.inputElement = React.createRef();
+  }
 
   // componentWillMount() {
   //     console.log('[Person.js] inside componentWillMount');
@@ -16,7 +17,7 @@ class Person extends Component {
   componentDidMount() {
       console.log('[Person.js] inside componentDidMount');
       if(this.props.position === 0) 
-        this.inputElement.focus();
+        this.inputElement.current.focus();
   }
   render() {
     console.log('[Person.js] inside render');
@@ -29,7 +30,7 @@ class Person extends Component {
               <div className={classes.formInputs}>
                 <label htmlFor="name">Name</label>
                 <input 
-                  ref = {(input) => { this.inputElement = input } } // this references Person class
+                  ref = {this.inputElement} // this references Person class
                   id="name" 
                   onChange={(e) => this.props.onNameChangedHandler(e, this.props.id)} 
                   placeholder={this.props.name}/>
