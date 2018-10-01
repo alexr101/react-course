@@ -1,7 +1,8 @@
-import React, { {PureComponent} } from 'react';
+import React, { PureComponent } from 'react';
 // import classes from './App.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import PersonCollection from '../Components/PersonCollection/PersonCollection';
+import Aux from '../HOC/Aux';
 
 class App extends PureComponent {
 
@@ -138,13 +139,13 @@ class App extends PureComponent {
 
 
     return (
-      <div>
+      <Aux>
         <Cockpit
           appTitle = {this.props.appTitle}
           headerStyle = {headerStyle}
           togglePeopleList = {this.togglePeopleList}></Cockpit>
         {peopleCollection}
-      </div>
+      </Aux>
     );
   }
 }
