@@ -4,7 +4,7 @@ import classes from './Button.css';
 const getBtnClass = (btnType) => {
   var btnClass = classes.btn;
 
-  if(btnType == 'red') btnClass += ' ' + classes.redBtn;
+  if(btnType === 'red') btnClass += ' ' + classes.redBtn;
   
   return btnClass;
 }

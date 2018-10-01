@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './App.css';
+// import classes from './App.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import PersonCollection from '../Components/PersonCollection/PersonCollection';
 
@@ -29,9 +29,22 @@ class App extends Component {
   componentWillMount() {
     console.log('[App.js] inside componentWillMount');
   }
-  
+
   componentDidMount() {
     console.log('[App.js] inside componentDidMount');
+  }
+
+  shouldComponentUpdate (nextProps, nextState){
+    console.log('[App.js] inside componentWillReceiveProps', nextProps, nextState);
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+      console.log('[App.js] inside componentWillUpdate', nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+      console.log('[App.js] inside componentDidUpdate');
   }
 
   updatePersonHandler = () => {
@@ -39,6 +52,7 @@ class App extends Component {
     this.state.updates.editedPeople.map((updatedPerson, i) => {
       if(updatedPerson)
         people[i] = updatedPerson;
+      return '';
     })
 
     this.setState({
