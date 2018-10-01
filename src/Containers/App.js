@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { {PureComponent} } from 'react';
 // import classes from './App.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import PersonCollection from '../Components/PersonCollection/PersonCollection';
 
-class App extends Component {
+class App extends PureComponent {
 
   constructor(props) {
     super(props)
