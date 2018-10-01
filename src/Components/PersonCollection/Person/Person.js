@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from '../../Button/Button';
-import classes from './Person.css'
+import classes from './Person.css';
+import PropTypes from 'prop-types';
 
 class Person extends Component {
   // constructor(props) {
@@ -35,6 +36,16 @@ class Person extends Component {
               <Button click={() => this.props.removePerson(this.props.id)} buttonType="red">Remove</Button>
             </div>
   }
+}
+
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  children: PropTypes.object,
+  onNameChangedHandler: PropTypes.func,
+  onAgeChangedHandler: PropTypes.func,
+  removePerson: PropTypes.func,
 }
 
 
