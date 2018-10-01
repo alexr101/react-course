@@ -1,16 +1,17 @@
 import React from 'react';
 import Button from '../Button/Button';
 import logo from '../../Assets/logo.svg';
-import classes from './Cockpit.css'
+import classes from './Cockpit.css';
+import WithClass from '../../HOC/WithClass';
 
 
 
 const Cockpit = (props) => {
-    return  <div className={classes.Cockpit}>
+    return  <WithClass classes={classes.Cockpit}>
                 <img className={classes.logo} src={logo} alt=""></img>
                 <h1 style={props.headerStyle}>{props.appTitle}</h1>
                 <Button click={props.togglePeopleList}>Show People</Button>
-            </div>
+            </WithClass>
 }
 
 export default Cockpit;

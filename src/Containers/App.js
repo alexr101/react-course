@@ -35,10 +35,10 @@ class App extends PureComponent {
     console.log('[App.js] inside componentDidMount');
   }
 
-  shouldComponentUpdate (nextProps, nextState){
-    console.log('[App.js] inside componentWillReceiveProps', nextProps, nextState);
-    return true;
-  }
+  // shouldComponentUpdate (nextProps, nextState){
+  //   console.log('[App.js] inside componentWillReceiveProps', nextProps, nextState);
+  //   return true;
+  // }
 
   componentWillUpdate(nextProps, nextState) {
       console.log('[App.js] inside componentWillUpdate', nextProps, nextState);
