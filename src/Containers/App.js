@@ -1,8 +1,12 @@
 import React, { PureComponent } from 'react';
 // import classes from './App.css';
+import Button from '../Components/Button/Button';
+
 import Cockpit from '../Components/Cockpit/Cockpit';
 import PersonCollection from '../Components/PersonCollection/PersonCollection';
 import Aux from '../HOC/Aux';
+
+export const AuthContext = React.createContext(false);
 
 class App extends PureComponent {
 
@@ -24,7 +28,8 @@ class App extends PureComponent {
         editedPeople: []
       },
       showPeople: false,
-      toggleClicked: 0
+      toggleClicked: 0,
+      isAuthenticated: false
     }
   }
   
@@ -125,6 +130,14 @@ class App extends PureComponent {
     this.setState({ people: people });
   }
 
+  authenticateUser = () => {
+    var isAuthenticated = this.state.isAuthenticated;
+    console.log(isAuthenticated)
+    this.setState({
+      isAuthenticated: !isAuthenticated
+    })
+  }
+
   render() {
     console.log('[App.js] inside render()');
     var peopleCollection;
@@ -143,7 +156,6 @@ class App extends PureComponent {
       headerStyle.color = 'red'
     }
 
-
     return (
       <Aux>
         <Cockpit
@@ -151,7 +163,11 @@ class App extends PureComponent {
           headerStyle = {headerStyle}
           toggleClicked = {this.state.toggleClicked}
           togglePeopleList = {this.togglePeopleList}></Cockpit>
-        {peopleCollection}
+        <Button click={this.authenticateUser}>{this.state.isAuthenticated ? 'Logout' : 'Login'}</Button>
+        
+        <AuthContext.Provider value={this.state.isAuthenticated}>
+          {peopleCollection}
+        </AuthContext.Provider>
       </Aux>
     );
   }

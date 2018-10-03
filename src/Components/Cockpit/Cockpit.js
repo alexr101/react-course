@@ -16,4 +16,4 @@ const Cockpit = (props) => {
             </Aux>
 }
 
-export default Cockpit;
+export default withClass(Cockpit, classes.Cockpit);
