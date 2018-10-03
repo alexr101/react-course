@@ -54,6 +54,25 @@ class App extends PureComponent {
       console.log('[App.js] inside componentDidUpdate');
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('[App.js] inside getDerivedStateFromProps', nextProps, prevState);
+
+    return prevState;
+    // return {
+    //   newState: etc
+    // }
+
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log('[App.js] inside getSnapshotBeforeUpdate');
+
+    // Executed right before a DOM update
+    // Take a screenshot, and update the DOM on componentDidUpdate
+    // ie reset scrolling position after async update
+
+  }
+
   updatePersonHandler = () => {
     var people = [...this.state.people];
     this.state.updates.editedPeople.map((updatedPerson, i) => {
