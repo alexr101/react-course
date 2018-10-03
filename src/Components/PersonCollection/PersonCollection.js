@@ -5,6 +5,7 @@ import Person from './Person/Person';
 class PersonCollection extends Component {
     constructor(props) {
         super(props)
+        this.lastPersonRef = React.createRef();
         console.log('[PersonCollection.js] inside contructor', props );
     }
     
@@ -13,6 +14,8 @@ class PersonCollection extends Component {
     }
     
     componentDidMount() {
+ 
+        this.lastPersonRef.current.focus();
         console.log('[PersonCollection.js] inside componentDidMount');
     }
 
@@ -41,19 +44,18 @@ class PersonCollection extends Component {
 
         return this.props.people.map((person, i) => {
             return (
-              // <ErrorBoundary key={i}>
                 <Person  
-                key={i}
-                  id = {i}
-                  name={person.name} 
-                  age={person.age}
-                  position = {i}
-                  onNameChangedHandler = {this.props.onNameChangedHandler}
-                  onAgeChangedHandler = {this.props.onAgeChangedHandler}
-                  updatePersonHandler = {this.props.updatePersonHandler}
-                  removePerson = {this.props.removePerson}
-                  ></Person>
-              //   </ErrorBoundary>   
+                    key={i}
+                    id = {i}
+                    name={person.name} 
+                    age={person.age}
+                    position = {i}
+                    ref = {this.lastPersonRef}
+                    onNameChangedHandler = {this.props.onNameChangedHandler}
+                    onAgeChangedHandler = {this.props.onAgeChangedHandler}
+                    updatePersonHandler = {this.props.updatePersonHandler}
+                    removePerson = {this.props.removePerson}
+                    ></Person>
             );
           })
     }

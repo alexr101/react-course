@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../Button/Button';
 import logo from '../../Assets/logo.svg';
 import classes from './Cockpit.css';
-import withClass from '../../HOC/WithClass';
+import withClass from '../../HOC/withClass';
 import Aux from '../../HOC/Aux';
 
 
@@ -16,4 +16,4 @@ const Cockpit = (props) => {
             </Aux>
 }
 
-export default withClass(Cockpit, classes.Cockpit);
+export default Cockpit;

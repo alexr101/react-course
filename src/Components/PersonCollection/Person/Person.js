@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Button from '../../Button/Button';
 import classes from './Person.css';
 import PropTypes from 'prop-types';
+import withClass from '../../../HOC/withClass';
 
 class Person extends Component {
   constructor(props) {
@@ -16,13 +17,17 @@ class Person extends Component {
 
   componentDidMount() {
       console.log('[Person.js] inside componentDidMount');
-      if(this.props.position === 0) 
-        this.inputElement.current.focus();
+      // if(this.props.position === 0) 
+        // this.inputElement.current.focus();
+  }
+
+  focus(){
+    this.inputElement.current.focus();
   }
   render() {
     console.log('[Person.js] inside render');
 
-    return  <div className={classes.Person} onClick={this.props.click}>
+    return  <div onClick={this.props.click}>
               <h2>Profile Card</h2>
               <h3>Name: {this.props.name}</h3>
               <h3>Age: {this.props.age}</h3>
@@ -56,4 +61,4 @@ Person.propTypes = {
 }
 
 
-export default Person;
+export default withClass(Person, classes.Person);

@@ -11,15 +11,21 @@ import React, {Component} from 'react';
 
 // or factory method if we need a stateful component
 
-const WithClass = (WrappedComponent, className) => {
-    return class extends Component {
+const withClass = (WrappedComponent, className) => {
+    
+    class WithClass extends Component {
         render() {
-            return (
+            return  (
                 <div className={className}>
-                    <WrappedComponent {...this.props}/>
+                    <WrappedComponent {...this.props} ref={this.props.forwardedRef}/>
                 </div>
             )
         }
     }
+
+    return React.forwardRef((props, ref) => {        
+        return <WithClass {...props} forwardedRef={ref} />
+    });
+
 }
-export default WithClass;
+export default withClass;
